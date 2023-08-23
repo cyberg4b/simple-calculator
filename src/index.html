@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/img/calculator_icon.png">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="../dist/style.css">
+</head>
+<body class="flex h-screen justify-center items-center bg-gray-200">
+    <main class="flex flex-col items-center justify-center h-[30rem] w-80 bg-gray-400 shadow-2xl shadow-gray-600 rounded-3xl">
+        <div id="result_box">
+            <input id="result" class="h-16 w-64 bg-inherit text-white text-right text-4xl placeholder-white" type="text" placeholder="0" readonly>
+        </div>
+
+        <div id="number_keyboard">
+            <div id="row">
+                <button class="btn" onclick="display.value = ''">AC</button>
+                <button class="btn btn-symbol" onclick="insertValue('<-')">←</button>
+                <button class="btn btn-symbol" onclick="insertValue('/')">÷</button>
+                <button class="btn btn-symbol" onclick="insertValue('*')">x</button>
+            </div>
+            <div id="row">
+                <button class="btn" onclick="insertValue('7')">7</button>
+                <button class="btn" onclick="insertValue('8')">8</button>
+                <button class="btn" onclick="insertValue('9')">9</button>
+                <button class="btn btn-symbol" onclick="insertValue('-')">-</button>
+            </div>
+            <div id="row">
+                <button class="btn" onclick="insertValue('4')">4</button>
+                <button class="btn" onclick="insertValue('5')">5</button>
+                <button class="btn" onclick="insertValue('6')">6</button>
+                <button class="btn btn-symbol" onclick="insertValue('+')">+</button>
+            </div>
+            <div class="flex">
+                <div>
+                    <div id="row">
+                        <button class="btn" onclick="insertValue('1')">1</button>
+                        <button class="btn" onclick="insertValue('2')">2</button>
+                        <button class="btn" onclick="insertValue('3')">3</button>
+                    </div>
+        
+                    <div id="row">
+                        <button class="btn w-32" onclick="insertValue('0')">0</button>
+                        <button class="btn ml-1" onclick="insertValue('.')">.</button>
+                    </div>
+                </div>
+                <button class="btn h-32 ml-1 bg-gray-600 hover:ring-gray-600" onclick="calcThis()">=</button>
+            </div>
+            
+        </div>
+    </main>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

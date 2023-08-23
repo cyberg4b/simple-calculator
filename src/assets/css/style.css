@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply h-16 w-16 bg-gray-600 rounded-full text-xl text-white mb-1 shadow-md shadow-gray-500 hover:ring-2 hover:ring-gray-600
+    }
+
+    .btn-symbol {
+        @apply bg-orange-500 hover:ring-orange-500
+    }
+}
