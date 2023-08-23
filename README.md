@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/progmesquita/simple-crud/assets/121181562/eac1d742-d8b5-447b-a679-80f64615c2e8" heigth="200px" />
+  <img src="https://github.com/progmesquita/simple-calculator/assets/121181562/51965fbe-c369-4ac2-85ef-f9451f828591" heigth="200px" />
 </div>
 
 ## Tutorial de Execução:
