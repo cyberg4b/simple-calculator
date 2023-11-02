@@ -558,6 +558,10 @@ video {
   --tw-ring-color: rgb(249 115 22 / var(--tw-ring-opacity));
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .ml-1 {
   margin-left: 0.25rem;
 }
@@ -592,6 +596,12 @@ video {
 
 .w-80 {
   width: 20rem;
+}
+
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .flex-col {
@@ -667,4 +677,9 @@ video {
 .hover\:ring-gray-600:hover {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
