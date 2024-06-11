@@ -1,5 +1,10 @@
-import { keyboardInputHandler } from "./actions.js";
+import { insertValue, keyboardInputHandler } from "./actions.js";
+import { buttons } from "./display.js"
 
 export function start() {
     document.addEventListener("keydown", keyboardInputHandler); // Ativa a escuta no teclado
+
+    for(let button of buttons) {
+        button.addEventListener("click", insertValue)
+    }
 }

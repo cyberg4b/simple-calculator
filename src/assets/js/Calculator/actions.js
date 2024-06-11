@@ -1,37 +1,54 @@
 import { result } from './display.js'
 import { state } from './state.js'
 
-export function insertValue(val) {
-    if (val == "C") {
-        result.value = ""
-        return 0
-    }
-    if (val == "<-") {
-        inputFlag = ""
-        Array.from(result.value).forEach(item => { // transcreve todo valor do result para inputFlag com um caractere a menos
-            if (inputFlag.length < result.value.length - 1) {
-                inputFlag += item
-            }
-        })
-        result.value = inputFlag
+function calcThis() {
+    try {
+        let resultValue = eval(result.value)
+    
+        result.value = resultValue
+        state.haveOperator = false
 
-    } else {
-        result.value += val
+    } catch(SyntaxError) {
+        result.value = "Syntax Error!"
+
+        setTimeout(() => {
+            result.value = ""
+        }, 1300)
     }
 }
 
-export function calcThis() {
-    let resultValue = eval(result.value)
+export function insertValue(button) {
+    const val = button.target.innerText
 
-    if (isNaN(resultValue)) {
-        result.value = "Syntax Error!"
-        setTimeout(() => {
-            result.value = "0"
-        }, 1300)
-
-    } else {
-        result.value = resultValue
-        state.haveOperator = false
+    switch(val) {
+        case "AC":
+            result.value = ""
+            break
+        case "←":
+            let inputFlag = ""
+            
+            Array.from(result.value).forEach(item => { // transcreve todo valor do result para inputFlag com um caractere a menos
+                if (inputFlag.length < result.value.length - 1) {
+                    inputFlag += item
+                }
+            })
+            result.value = inputFlag
+            break
+        case "x":
+            result.value += "*"
+            break
+        case "÷":
+            result.value += "/"
+            break
+        case "=":
+            if(!result.value.length) {
+                break
+            } else {
+                calcThis()
+                break
+            }
+        default:
+            result.value += val
     }
 }
 
@@ -41,8 +58,12 @@ export function keyboardInputHandler(e) {
 
     switch (true) {
         case /[0-9.]/.test(e.key):
-            result.value += e.key
-            break
+            if(e.key == 0 && result.value.length == 0) { // Não acrescenta mais nenhum zero caso seja primeiro número
+                break
+            } else {
+                result.value += e.key
+                break
+            }
         case /^[+\-*/%]/.test(e.key):
             if(state.haveOperator) {
                 result.value = result.value.replace(result.value[result.value.length-1], e.key)
