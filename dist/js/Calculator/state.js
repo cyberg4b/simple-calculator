@@ -3,4 +3,4 @@ export const state = {
     haveOperator: false,
     isResult: false,
     syntaxError: false
-}
+};

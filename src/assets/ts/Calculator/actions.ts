@@ -1,14 +1,14 @@
 import { result } from './display.js'
 import { state } from './state.js'
 
-function calcThis() {
+function calcThis(): void {
     try {
-        let resultValue = eval(result.value)
-    
+        let resultValue: string = eval(result.value)
+
         result.value = resultValue
         state.haveOperator = false
 
-    } catch(SyntaxError) {
+    } catch (SyntaxError) {
         result.value = "Syntax Error!"
 
         setTimeout(() => {
@@ -17,16 +17,16 @@ function calcThis() {
     }
 }
 
-export function insertValue(button) {
-    const val = button.target.innerText
+export function insertValue(button: PointerEvent): void {
+    const { innerText: val } = button.target as HTMLElement
 
-    switch(val) {
+    switch (val) {
         case "AC":
             result.value = ""
             break
         case "←":
-            let inputFlag = ""
-            
+            let inputFlag: string = ""
+
             Array.from(result.value).forEach(item => { // transcreve todo valor do result para inputFlag com um caractere a menos
                 if (inputFlag.length < result.value.length - 1) {
                     inputFlag += item
@@ -41,7 +41,7 @@ export function insertValue(button) {
             result.value += "/"
             break
         case "=":
-            if(!result.value.length) {
+            if (!result.value.length) {
                 break
             } else {
                 calcThis()
@@ -52,26 +52,26 @@ export function insertValue(button) {
     }
 }
 
-// Função para lidar com o input do teclado
-export function keyboardInputHandler(e) {
+// Function to handle keyboard input
+export function keyboardInputHandler(e: KeyboardEvent): void {
     e.preventDefault()
 
     switch (true) {
         case /[0-9.]/.test(e.key):
-            if(e.key == 0 && result.value.length == 0) { // Não acrescenta mais nenhum zero caso seja primeiro número
+            if (e.key == '0' && result.value.length == 0) {
                 break
             } else {
                 result.value += e.key
                 break
             }
         case /^[+\-*/%]/.test(e.key):
-            if(state.haveOperator) {
-                result.value = result.value.replace(result.value[result.value.length-1], e.key)
+            if (state.haveOperator) {
+                result.value = result.value.replace(result.value[result.value.length - 1], e.key)
             } else {
                 result.value += e.key
             }
 
-            state.haveOperator = /[+\-*/%]/.test(e.key) // Verifica se tem algum operador matemático no input
+            state.haveOperator = /[+\-*/%]/.test(e.key) // Checks if there is any mathematical operator in the input
             break
     }
 
@@ -80,7 +80,7 @@ export function keyboardInputHandler(e) {
     }
 
     if (e.key === "Backspace") {
-        const resultInput = result.value
+        const resultInput: string = result.value
         result.value = resultInput.substring(0, result.value.length - 1)
 
         if (result.value.length == 0) {
